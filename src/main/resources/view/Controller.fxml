@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import ru.alexsumin.northwest.model.*?>
+<?import java.net.URL?>
+<?import java.util.ArrayList?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141"
+      fx:controller="ru.alexsumin.northwest.view.Controller">
+    <children>
+        <MenuBar VBox.vgrow="NEVER">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Calculate" onAction="#calculate"/>
+                        <MenuItem mnemonicParsing="false" text="Optimize" onAction="#potentialsMethod"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem mnemonicParsing="false" text="Set test data" onAction="#setTestData"/>
+                        <MenuItem mnemonicParsing="false" text="Clear" onAction="#clear"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem mnemonicParsing="false" text="Quit" onAction="#exit"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About" onAction="#about"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+            <children>
+                <GridPane layoutX="157.0" layoutY="148.0" prefHeight="571.0" prefWidth="800.0"
+                          AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                          AnchorPane.topAnchor="0.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="672.0" minWidth="155.0" prefWidth="605.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="459.0" minHeight="10.0" prefHeight="419.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES"/>
+                    </rowConstraints>
+                    <children>
+                        <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0">
+                            <columns>
+                                <TableColumn fx:id="info" prefWidth="75.0" text="Info"/>
+                                <TableColumn fx:id="needs1" prefWidth="75.0" text="Need1"/>
+                                <TableColumn fx:id="needs2" prefWidth="75.0" text="Need2"/>
+                                <TableColumn fx:id="needs3" prefWidth="75.0" text="Need3"/>
+                                <TableColumn fx:id="needs4" prefWidth="75.0" text="Need4"/>
+                            </columns>
+                            <GridPane.margin>
+                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                            </GridPane.margin>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                            </columnResizePolicy>
+                        </TableView>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                            <GridPane.margin>
+                                <Insets bottom="10.0" left="10.0" right="15.0" top="10.0"/>
+                            </GridPane.margin>
+                            <children>
+                                <GridPane layoutY="4.0" prefHeight="425.0" prefWidth="127.0"
+                                          AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                    </rowConstraints>
+                                    <children>
+                                        <NumberTextField fx:id="supplier1Field" GridPane.rowIndex="1"/>
+                                        <NumberTextField fx:id="supplier2Field" GridPane.rowIndex="2"/>
+                                        <NumberTextField fx:id="supplier3Field" GridPane.rowIndex="3"/>
+                                        <NumberTextField fx:id="supplier4Field" GridPane.rowIndex="4"/>
+                                        <Label text="Suppliers">
+                                            <GridPane.margin>
+                                                <Insets left="25.0"/>
+                                            </GridPane.margin>
+                                        </Label>
+                                    </children>
+                                </GridPane>
+                            </children>
+                        </AnchorPane>
+                        <Button mnemonicParsing="false" onAction="#calculate" prefHeight="26.0" prefWidth="125.0"
+                                text="Start" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                            <children>
+                                <GridPane layoutX="127.0" prefHeight="126.0" prefWidth="653.0"
+                                          AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                    </rowConstraints>
+                                    <children>
+                                        <NumberTextField fx:id="consumer1Field" GridPane.columnIndex="1">
+                                            <GridPane.margin>
+                                                <Insets left="10.0" right="5.0"/>
+                                            </GridPane.margin>
+                                        </NumberTextField>
+                                        <NumberTextField fx:id="consumer2Field" GridPane.columnIndex="2">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0"/>
+                                            </GridPane.margin>
+                                        </NumberTextField>
+                                        <NumberTextField fx:id="consumer3Field" GridPane.columnIndex="3">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0"/>
+                                            </GridPane.margin>
+                                        </NumberTextField>
+                                        <NumberTextField fx:id="consumer4Field" GridPane.columnIndex="4">
+                                            <opaqueInsets>
+                                                <Insets/>
+                                            </opaqueInsets>
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="10.0"/>
+                                            </GridPane.margin>
+                                        </NumberTextField>
+                                        <Label prefHeight="16.0" prefWidth="80.0" text="Consumers">
+                                            <GridPane.margin>
+                                                <Insets left="30.0"/>
+                                            </GridPane.margin>
+                                        </Label>
+                                    </children>
+                                </GridPane>
+                            </children>
+                            <GridPane.margin>
+                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                            </GridPane.margin>
+                        </AnchorPane>
+                    </children>
+                </GridPane>
+            </children>
+        </AnchorPane>
+
+    </children>
+    <stylesheets>
+        <URL value="@/view/styles.css"/>
+    </stylesheets>
+    <fx:define>
+        <ArrayList fx:id="fields">
+            <fx:reference source="consumer1Field"/>
+            <fx:reference source="consumer2Field"/>
+            <fx:reference source="consumer3Field"/>
+            <fx:reference source="consumer4Field"/>
+            <fx:reference source="supplier1Field"/>
+            <fx:reference source="supplier2Field"/>
+            <fx:reference source="supplier3Field"/>
+            <fx:reference source="supplier4Field"/>
+        </ArrayList>
+    </fx:define>
+</VBox>
